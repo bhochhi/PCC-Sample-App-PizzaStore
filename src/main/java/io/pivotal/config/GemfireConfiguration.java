@@ -17,6 +17,7 @@ package io.pivotal.config;
 
 import io.pivotal.model.Name;
 import io.pivotal.model.Pizza;
+import org.apache.geode.distributed.ConfigurationProperties;
 import org.apache.geode.pdx.ReflectionBasedAutoSerializer;
 import org.springframework.cloud.Cloud;
 import org.springframework.cloud.CloudFactory;
@@ -55,6 +56,8 @@ public class GemfireConfiguration {
             gemfireProperties.setProperty(SECURITY_USERNAME, serviceInfo.getUsername());
             gemfireProperties.setProperty(SECURITY_PASSWORD, serviceInfo.getPassword());
             gemfireProperties.setProperty(SECURITY_CLIENT, "io.pivotal.config.UserAuthInitialize.create");
+            gemfireProperties.setProperty(ConfigurationProperties.SSL_ENABLED_COMPONENTS, "ALL");
+            gemfireProperties.setProperty(ConfigurationProperties.SSL_USE_DEFAULT_PROVIDER, "true");
 
             for (URI locator : serviceInfo.getLocators()) {
                 clientCacheFactoryBean.addLocators(new ConnectionEndpoint(locator.getHost(), locator.getPort()));

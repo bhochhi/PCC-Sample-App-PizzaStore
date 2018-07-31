@@ -24,6 +24,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
+	mavenLocal()
 	mavenCentral()
 	maven { url "https://repo.spring.io/libs-milestone" }
 	maven { url "https://repo.spring.io/milestone" }
@@ -36,13 +37,13 @@ repositories {
 dependencies {
 	compile("org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion")
 	compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
-	compile("org.springframework.data:spring-data-gemfire:$springDataGemfireVersion"){
-		exclude group: "io.pivotal.gemfire"
+	compile("org.springframework.data:spring-data-geode:$springDataGemfireVersion"){
+		exclude group: "org.apache.geode"
 	}
-	compile("io.pivotal.gemfire:geode-core:$gemfireVersion")
-	compile("io.pivotal.gemfire:geode-cq:$gemfireVersion")
-	compile("io.pivotal.gemfire:geode-wan:$gemfireVersion")
-	compile("io.pivotal.gemfire:geode-lucene:$gemfireVersion")
+	compile("org.apache.geode:geode-core:$geodeVersion")
+	compile("org.apache.geode:geode-cq:$geodeVersion")
+	compile("org.apache.geode:geode-wan:$geodeVersion")
+	compile("org.apache.geode:geode-lucene:$geodeVersion")
 	compile("io.pivotal.spring.cloud:spring-cloud-gemfire-spring-connector:$springConnectorVersion")
 	compile("io.pivotal.spring.cloud:spring-cloud-gemfire-cloudfoundry-connector:$cloudConnectorVersion")
 	runtime("com.h2database:h2:$h2Version")
